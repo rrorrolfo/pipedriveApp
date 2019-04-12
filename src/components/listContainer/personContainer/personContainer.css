@@ -1,0 +1,24 @@
+
+.PersonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: 1px solid var(--strong-grey);
+}
+
+.personal_data p {
+    margin: 0;
+    font-weight: 700;
+}
+
+.personal_data p:last-child {
+    font-size: .9rem;
+    color: var(--strong-grey);
+}
+
+.profile_pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
