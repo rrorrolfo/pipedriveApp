@@ -14,3 +14,10 @@
   .mainNav li:first-child {
     border-right: 1px dotted var(--black-brand);
   }
+
+  .mainNav a {
+    display: block;
+    padding: 15px 10px;
+    font-weight: 700;
+    color: #000;
+  }
