@@ -2,10 +2,18 @@
 
 :root {
   --black-brand: #26292c;
+  --grey-color: rgb(241, 239, 239);
 }
 
 /********* General ********/
 
 * {
   box-sizing: border-box;
+    /** Typography**/
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+}
+
+ul {
+  list-style: none;
 }
