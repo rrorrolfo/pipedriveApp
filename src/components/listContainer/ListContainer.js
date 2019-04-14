@@ -2,15 +2,17 @@ import React from "react";
 import "./listContainer.css";
 import PersonContainer from "./personContainer/PersonContainer";
 import {sortableContainer} from 'react-sortable-hoc';
+import Modal from "../modal/Modal";
 
 const SortableContainer = sortableContainer(({children}) => {
   return <ul className="ListContainer">{children}</ul>;
 });
 
 const ListContainer = ({ people, sortList }) => {
-        return(
-            
-            //Components inside this container are sortable
+    return(
+        
+        <React.Fragment>
+            {/*/Components inside this container are sortable*/}
             <SortableContainer onSortEnd={ sortList }>
                 { people ? (
                     people.map((person, index) => (
@@ -24,8 +26,10 @@ const ListContainer = ({ people, sortList }) => {
                     ) 
                 }
             </SortableContainer>
+            <Modal />
+        </React.Fragment>
 
-        )
+    )
     
 }
 

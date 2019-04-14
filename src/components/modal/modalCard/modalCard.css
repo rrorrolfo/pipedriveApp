@@ -1,0 +1,101 @@
+/******* General ********/
+.modal_cross:hover,
+.back_button {
+    cursor: pointer;
+}
+
+/******* colors ********/
+
+.card_title,
+.back_container {
+    background-color: var(--grey-color);
+}
+
+/******** Elements ********/
+
+.person_card {
+    width: 80%;
+    background-color: #fff;
+    margin: 15vh auto;
+    z-index: 99999;
+}
+
+.card_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_title h3,
+.modal_cross {
+    margin: 10px 5px 10px 10px;
+}
+
+.modal_cross {
+    padding: 3px 5px;
+}
+
+.main_data {
+    text-align: center;
+    margin: 25px 20px;
+    border-bottom: 1px solid var(--strong-grey);
+}
+
+.main_data img {
+    height: 80px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-bottom: 5px;
+    font-weight: 900;
+    font-size: 1.1rem;
+}
+
+.mobile {
+    color: rgb(1, 207, 139);
+    margin-bottom: 50px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.more_data_container {
+    padding-bottom: 25px;
+}
+
+.more_data {
+    display: flex;
+}
+
+.more_data p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.data_name {
+    flex-basis: 35%;
+    text-align: right;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.data_value {
+    flex-basis: 55%;
+    text-align: left;
+    padding-left: 25px;
+    font-size: .8rem;
+    color: var(--strong-grey);
+}
+
+.back_container {
+    text-align: right;
+}
+
+.back_button {
+    height: 30px;
+    margin: 10px 0;
+    margin-right: 25px;
+    background-color: #fff;
+    border: 1px solid #000;
+    width: 80px;
+    font-weight: 600;
+}
