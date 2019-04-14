@@ -22,3 +22,15 @@
     height: 50px;
     border-radius: 50%;
 }
+
+.company::before {
+    content: " ";
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 2.5px;
+    background-image: url("../../../assets/company.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -8,7 +8,7 @@ const PersonContainer = ({ name, company }) => {
         <div className="PersonContainer">
             <div className="personal_data">
                 <p>{ name }</p>
-                <p>{ company }</p>
+                <p className="company">{ company }</p>
             </div>
             <img src={ photo } alt="lady" className="profile_pic"/>
         </div>
