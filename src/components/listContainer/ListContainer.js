@@ -3,17 +3,18 @@ import "./listContainer.css";
 import PersonContainer from "./personContainer/PersonContainer";
 import {sortableContainer} from 'react-sortable-hoc';
 import Modal from "../modal/Modal";
+import PropTypes from "prop-types";
 
 const SortableContainer = sortableContainer(({children}) => {
   return <ul className="ListContainer">{children}</ul>;
 });
 
-const ListContainer = ({ people, sortList, showModal, toogleModal }) => {
+const ListContainer = ({ people, sortList, showModal }) => {
     return(
         
         <React.Fragment>
             {/*/Components inside this container are sortable*/}
-            <SortableContainer onSortEnd={ sortList } onClick={ () => toogleModal}>
+            <SortableContainer onSortEnd={ sortList } >
                 { people ? (
                     people.map((person, index) => (
                         <PersonContainer 
@@ -32,6 +33,13 @@ const ListContainer = ({ people, sortList, showModal, toogleModal }) => {
 
     )
     
+}
+
+ListContainer.propTypes = {
+    people: PropTypes.arrayOf(PropTypes.object).isRequired,
+    sortList: PropTypes.func.isRequired,
+    showModal: PropTypes.bool.isRequired
+
 }
 
 export default ListContainer;
