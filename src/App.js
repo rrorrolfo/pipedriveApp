@@ -11,7 +11,8 @@ import ListContainer from "./components/listContainer/ListContainer";
 class App extends Component {
 
   state = {
-    people:""
+    people:"",
+    displayModal: false
   }
 
   componentDidMount() {
@@ -27,6 +28,7 @@ class App extends Component {
 
   }
 
+  //Updates order of components after they have been dragged to new position
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({people}) => ({
       people: arrayMove(people, oldIndex, newIndex),
@@ -39,7 +41,11 @@ class App extends Component {
         <div>
           <Header />
           <Nav />
-          <Route exact path="/" render= { () => <ListContainer people={ this.state.people } sortList={ this.onSortEnd }/> } />
+          <Route exact path="/" render= { () => <ListContainer 
+          people={ this.state.people } 
+          sortList={ this.onSortEnd } 
+          showModal={ this.state.displayModal }
+          /> } />
         </div>
       </BrowserRouter>
     );
