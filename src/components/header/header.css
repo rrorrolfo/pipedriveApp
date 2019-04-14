@@ -2,6 +2,7 @@
 
 .Header {
     background-color: var(--black-brand);
+    text-align: center;
 }
 
 .logo {

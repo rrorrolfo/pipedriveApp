@@ -4,7 +4,7 @@ import PersonContainer from "./personContainer/PersonContainer";
 import {sortableContainer} from 'react-sortable-hoc';
 
 const SortableContainer = sortableContainer(({children}) => {
-  return <ul >{children}</ul>;
+  return <ul className="ListContainer">{children}</ul>;
 });
 
 const ListContainer = ({ people, sortList }) => {
