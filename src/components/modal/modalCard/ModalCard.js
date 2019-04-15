@@ -2,14 +2,14 @@ import React from "react";
 import "./modalCard.css";
 import photo from "../../../assets/no_pic.jpg";
 
-const ModalCard = () => {
+const ModalCard = ({ toggleModal }) => {
     return(
 
         <div className="person_card">
 
             <div className="card_title">
                 <h3>Person Information</h3>
-                <p className="modal_cross">X</p>
+                <p className="modal_cross" onClick={ () => toggleModal() }>X</p>
             </div>
 
             <div className="main_data">
@@ -68,7 +68,7 @@ const ModalCard = () => {
             </div>
 
             <div className="back_container">
-                <button className="back_button">Back</button>
+                <button className="back_button" onClick={ () => toggleModal() }>Back</button>
             </div>
 
         </div>

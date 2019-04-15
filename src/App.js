@@ -37,7 +37,7 @@ class App extends Component {
 
   toggleModal = () => {
     this.setState({
-      displayModal: true
+      displayModal: !this.state.displayModal
     })
   }
 

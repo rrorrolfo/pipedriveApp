@@ -32,7 +32,7 @@ const ListContainer = ({ people, sortList, showModal, toggleModal}) => {
                     ) 
                 }
             </SortableContainer>
-            <Modal showModal={ showModal } />
+            <Modal showModal={ showModal } toggleModal={ toggleModal }/>
         </React.Fragment>
 
     )

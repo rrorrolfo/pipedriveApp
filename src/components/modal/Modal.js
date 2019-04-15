@@ -2,10 +2,10 @@ import React from "react";
 import "./modal.css";
 import ModalCard from "./modalCard/ModalCard";
 
-const Modal = ({ showModal }) => {
+const Modal = ({ showModal, toggleModal }) => {
     return(
         <div className={showModal ? ("Modal isShown") : ("Modal isHidden")}>
-            <ModalCard />
+            <ModalCard toggleModal={ toggleModal }/>
         </div>
     )
 }
