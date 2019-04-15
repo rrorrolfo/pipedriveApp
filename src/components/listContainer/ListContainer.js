@@ -9,7 +9,7 @@ const SortableContainer = sortableContainer(({children}) => {
   return <ul className="ListContainer">{children}</ul>;
 });
 
-const ListContainer = ({ people, sortList, showModal, toggleModal}) => {
+const ListContainer = ({ people, sortList, showModal, toggleModal, selectedPersonFunc, selectedPerson}) => {
     return(
         
         <React.Fragment>
@@ -22,17 +22,19 @@ const ListContainer = ({ people, sortList, showModal, toggleModal}) => {
                     people.map((person, index) => (
                         <PersonContainer 
                             key={ person.id } 
+                            id={ person.id }
                             index={index} 
                             name={person.name} 
                             company={ person.org_name }
                             toggleModal={ toggleModal }
+                            selectedPersonFunc={ selectedPersonFunc }
                             />))
                     ):(
                         ""
                     ) 
                 }
             </SortableContainer>
-            <Modal showModal={ showModal } toggleModal={ toggleModal }/>
+            <Modal showModal={ showModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/>
         </React.Fragment>
 
     )
@@ -43,7 +45,8 @@ ListContainer.propTypes = {
     people: PropTypes.arrayOf(PropTypes.object).isRequired,
     sortList: PropTypes.func.isRequired,
     showModal: PropTypes.bool.isRequired,
-    toggleModal: PropTypes.func
+    toggleModal: PropTypes.func,
+    selectedPersonFunc: PropTypes.func
 
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import "./modalCard.css";
 import photo from "../../../assets/no_pic.jpg";
 
-const ModalCard = ({ toggleModal }) => {
+const ModalCard = ({ toggleModal, selectedPerson }) => {
     return(
 
         <div className="person_card">
@@ -14,7 +14,7 @@ const ModalCard = ({ toggleModal }) => {
 
             <div className="main_data">
                 <img src={ photo } alt="Persons name"/>
-                <p className="name">Anna Tamm</p>
+                <p className="name">Maria Tamm</p>
                 <p className="mobile">+372 56746453</p>
             </div>
 
