@@ -9,12 +9,15 @@ const SortableContainer = sortableContainer(({children}) => {
   return <ul className="ListContainer">{children}</ul>;
 });
 
-const ListContainer = ({ people, sortList, showModal }) => {
+const ListContainer = ({ people, sortList, showModal, toggleModal}) => {
     return(
         
         <React.Fragment>
-            {/*/Components inside this container are sortable*/}
-            <SortableContainer onSortEnd={ sortList } >
+            {/*/Components inside SortableContainer are sortable and dragable*/}
+            {/**
+            * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
+            */}
+            <SortableContainer onSortEnd={ sortList } distance={ 15 }> 
                 { people ? (
                     people.map((person, index) => (
                         <PersonContainer 
@@ -22,6 +25,7 @@ const ListContainer = ({ people, sortList, showModal }) => {
                             index={index} 
                             name={person.name} 
                             company={ person.org_name }
+                            toggleModal={ toggleModal }
                             />))
                     ):(
                         ""
@@ -38,7 +42,8 @@ const ListContainer = ({ people, sortList, showModal }) => {
 ListContainer.propTypes = {
     people: PropTypes.arrayOf(PropTypes.object).isRequired,
     sortList: PropTypes.func.isRequired,
-    showModal: PropTypes.bool.isRequired
+    showModal: PropTypes.bool.isRequired,
+    toggleModal: PropTypes.func
 
 }
 

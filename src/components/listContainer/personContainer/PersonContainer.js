@@ -4,8 +4,8 @@ import {sortableElement} from 'react-sortable-hoc';
 import photo from "../../../assets/no_pic.jpg";
 import PropTypes from "prop-types";
 
-const PersonContainer = sortableElement(({name, company}) => 
-    <li style={{listStyle: "none"}}>
+const PersonContainer = sortableElement(({name, company, toggleModal}) => 
+    <li style={{listStyle: "none"}} onClick={ () => toggleModal() }>
         <div className="PersonContainer">
             <div className="personal_data">
                 <p>{ name }</p>
@@ -18,7 +18,8 @@ const PersonContainer = sortableElement(({name, company}) =>
 
 PersonContainer.propTypes = {
     name: PropTypes.string,
-    company: PropTypes.string
+    company: PropTypes.string,
+    toggleModal: PropTypes.func
 }
 
 export default PersonContainer;

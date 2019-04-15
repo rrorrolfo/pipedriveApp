@@ -35,6 +35,12 @@ class App extends Component {
     }));
   };
 
+  toggleModal = () => {
+    this.setState({
+      displayModal: true
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -45,6 +51,7 @@ class App extends Component {
           people={ this.state.people } 
           sortList={ this.onSortEnd } 
           showModal={ this.state.displayModal }
+          toggleModal={ this.toggleModal }
           /> } />
         </div>
       </BrowserRouter>
