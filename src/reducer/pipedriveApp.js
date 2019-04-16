@@ -12,13 +12,13 @@ export default function pipedriveApp(state = initialState, action) {
         case PipedriveActionTypes.GET_PEOPLE:
         return {
             ...state,
-            people: action.payload.people
+            people: action.payload
         }
 
         case PipedriveActionTypes.TOOGLE_MODAL:
         return {
             ...state,
-            displayModal: action.status
+            displayModal: action.isDisplayed
         }
 
         case PipedriveActionTypes.SELECT_PERSON:
