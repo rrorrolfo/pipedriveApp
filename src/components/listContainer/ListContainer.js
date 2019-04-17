@@ -59,7 +59,7 @@ class ListContainer extends Component {
                         ) 
                     }
                 </SortableContainer>
-                <Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/>
+                {displayModal ? <Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/> : ("")}
             </React.Fragment>
     
         )
