@@ -8,7 +8,8 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
         <Consumer>
             { context => {
 
-                const personInModal = context[parseInt(selectedPerson) - 1]
+                // Finds clicked user in the people fetched from API
+                const personInModal = context.filter( person => person.id === parseInt(selectedPerson))
                 
                 return (
                     <div className="person_card">
@@ -19,8 +20,8 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
 
                         <div className="main_data">
                             <img src={ photo } alt="Persons name"/>
-                            <p className="name">{personInModal.name}</p>
-                            <p className="mobile">{personInModal.phone[0].value}</p>
+                            <p className="name">{personInModal[0].name}</p>
+                            <p className="mobile">{personInModal[0].phone[0].value}</p>
                         </div>
                         {console.log(context)}
                         <div className="more_data_container">
@@ -30,7 +31,7 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
                                     <p>Email</p>
                                 </div>
                                 <div className="data_value">
-                                    <p>{personInModal.email[0].value}</p>
+                                    <p>{personInModal[0].email[0].value}</p>
                                 </div>
                             </div>
 
@@ -39,7 +40,7 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
                                     <p>Organization</p>
                                 </div>
                                 <div className="data_value">
-                                    <p>{personInModal.org_name}</p>
+                                    <p>{personInModal[0].org_name}</p>
                                 </div>
                             </div>
 
@@ -48,7 +49,7 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
                                     <p>Location</p>
                                 </div>
                                 <div className="data_value">
-                                    <p>{personInModal.org_id.address}</p>
+                                    <p>{personInModal[0].org_id.address}</p>
                                 </div>
                             </div>
 
