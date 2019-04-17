@@ -11,9 +11,7 @@ import ListContainer from "./components/listContainer/ListContainer";
 class App extends Component {
 
   state = {
-    people:"",
-    displayModal: false,
-    selectedPerson: ""
+    people:""
   }
 
   componentDidMount() {
@@ -36,42 +34,13 @@ class App extends Component {
     }));
   };
 
-  toggleModal = () => {
-    this.setState({
-      displayModal: !this.state.displayModal
-    })
-  }
-
-  modalPersonData = event => {
-
-    const selectedPersonID = event.target.getAttribute("identifier");
-
-    this.state.people.forEach(
-      person => {
-        if (parseInt(selectedPersonID) === person.id) {
-           return this.setState({
-             selectedPerson: person
-           })
-        }
-      }
-    )
-
-  }
-
   render() {
     return (
       <BrowserRouter>
         <div>
           <Header />
           <Nav />
-          <Route exact path="/" render= { () => <ListContainer 
-          people={ this.state.people } 
-          sortList={ this.onSortEnd } 
-          showModal={ this.state.displayModal }
-          toggleModal={ this.toggleModal }
-          selectedPersonFunc={ this.modalPersonData }
-          selectedPerson={ this.state.selectedPerson}
-          /> } />
+          <Route exact path="/" render= { () => <ListContainer people={this.state.people} sortList={this.onSortEnd} /> } />
         </div>
       </BrowserRouter>
     );
