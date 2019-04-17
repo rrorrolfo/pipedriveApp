@@ -23,20 +23,20 @@ class ListContainer extends Component {
 
     render() {
 
+        const { sortList, dispatch, people, displayModal, selectedPerson } = this.props;
+        
+        // Action dispatchers
+        const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
+        const personInModal = bindActionCreators(PipeDriveactions.personInModal, dispatch);
+
+        // Sotable container HOC - Components inside SortableContainer are sortable and dragable
         const SortableContainer = sortableContainer(({children}) => {
             return <ul className="ListContainer">{children}</ul>;
           });
 
-
-        const { sortList, dispatch, people, displayModal, selectedPerson } = this.props;
-        
-        const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
-        const personInModal = bindActionCreators(PipeDriveactions.personInModal, dispatch);
-
         return(
-            
             <React.Fragment>
-                {/*/Components inside SortableContainer are sortable and dragable*/}
+
                 {/**
                 * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
                 */}
@@ -51,7 +51,6 @@ class ListContainer extends Component {
                             company={ person.org_name }
                             toggleModal={ toggleModal }
                             modalStatus={ displayModal }
-                            selectedPerson={ selectedPerson }
                             personInModal={ personInModal }
                             />))
                         ):(
@@ -59,7 +58,9 @@ class ListContainer extends Component {
                         ) 
                     }
                 </SortableContainer>
-                {displayModal ? <Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/> : ("")}
+
+                {displayModal ? (<Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/>) : ("")}
+
             </React.Fragment>
     
         )

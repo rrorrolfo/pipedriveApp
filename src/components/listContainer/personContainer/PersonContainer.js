@@ -4,7 +4,7 @@ import {sortableElement} from 'react-sortable-hoc';
 import photo from "../../../assets/no_pic.jpg";
 import PropTypes from "prop-types";
 
-const PersonContainer = sortableElement(({id, name, company, toggleModal, modalstatus, selectedPerson, personInModal}) => 
+const PersonContainer = sortableElement(({id, name, company, toggleModal, modalstatus, personInModal}) => 
     <li style={{listStyle: "none"}} onClick={ event => {toggleModal(modalstatus); personInModal(event.target.getAttribute("identifier"))} }>
         
         <div className="PersonContainer">
@@ -20,11 +20,12 @@ const PersonContainer = sortableElement(({id, name, company, toggleModal, modals
 );
 
 PersonContainer.propTypes = {
+    id: PropTypes.number,
     name: PropTypes.string,
     company: PropTypes.string,
     toggleModal: PropTypes.func,
-    selectedPerson: PropTypes.func,
-    modalstatus: PropTypes.bool
+    modalstatus: PropTypes.bool,
+    personInModal: PropTypes.func.isRequired
 }
 
 export default PersonContainer;
