@@ -2,6 +2,7 @@ import React from "react";
 import "./modalCard.css";
 import photo from "../../../assets/no_pic.jpg";
 import {Consumer} from "../../Context/index";
+import PropTypes from "prop-types";
 
 const ModalCard = ({ toggleModal, status, selectedPerson }) => {
     return(
@@ -66,6 +67,12 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
         </Consumer>
 
     )
+}
+
+ModalCard.propTypes = {
+    toggleModal: PropTypes.func,
+    status: PropTypes.bool,
+    selectedPerson: PropTypes.string
 }
 
 export default ModalCard;
