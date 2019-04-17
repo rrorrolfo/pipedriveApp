@@ -49,6 +49,8 @@ class ListContainer extends Component {
                             index={index} 
                             name={person.name} 
                             company={ person.org_name }
+                            toggleModal={ toggleModal }
+                            modalStatus={ displayModal }
                             />))
                         ):(
                             ""
