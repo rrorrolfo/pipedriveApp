@@ -3,6 +3,7 @@ import './styles/App.css';
 import { 
   BrowserRouter,
   Route  } from "react-router-dom";
+import { Provider } from "./components/Context/index";
 import arrayMove from 'array-move';
 import Header from "./components/header/Header";
 import Nav from "./components/navigation/Nav";
@@ -36,13 +37,15 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Header />
-          <Nav />
-          <Route exact path="/" render= { () => <ListContainer people={this.state.people} sortList={this.onSortEnd} /> } />
-        </div>
-      </BrowserRouter>
+      <Provider value={ this.state.people }>
+        <BrowserRouter>
+          <div>
+            <Header />
+            <Nav />
+            <Route exact path="/" render= { () => <ListContainer people={this.state.people} sortList={this.onSortEnd} /> } />
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
