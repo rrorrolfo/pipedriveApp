@@ -14,9 +14,9 @@ export const toggleModal = currentStatus => {
     }
 };
 
-export const personInModal = person => {
+export const personInModal = personID => {
     return {
         type: PipedriveActionTypes.SELECT_PERSON,
-        person
+        personID
     }
 }

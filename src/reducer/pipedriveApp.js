@@ -24,7 +24,7 @@ export default function pipedriveApp(state = initialState, action) {
         case PipedriveActionTypes.SELECT_PERSON:
         return {
             ...state,
-            selectedPerson: action.person
+            selectedPerson: action.personID
         }
 
         default:

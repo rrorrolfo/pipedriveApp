@@ -14,7 +14,7 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
 
             <div className="main_data">
                 <img src={ photo } alt="Persons name"/>
-                <p className="name">Maria Tamm</p>
+                <p className="name">{selectedPerson}</p>
                 <p className="mobile">+372 56746453</p>
             </div>
 

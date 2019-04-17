@@ -16,7 +16,7 @@ class ListContainer extends Component {
         sortList: PropTypes.func.isRequired,
         state: PropTypes.shape({
             displayModal: PropTypes.bool,
-            selectedPerson: PropTypes.object
+            selectedPerson: PropTypes.number
         })
     
     }
@@ -51,13 +51,15 @@ class ListContainer extends Component {
                             company={ person.org_name }
                             toggleModal={ toggleModal }
                             modalStatus={ displayModal }
+                            selectedPerson={ selectedPerson }
+                            personInModal={ personInModal }
                             />))
                         ):(
                             ""
                         ) 
                     }
                 </SortableContainer>
-                <Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ personInModal }/>
+                <Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/>
             </React.Fragment>
     
         )
