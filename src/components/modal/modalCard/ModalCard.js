@@ -24,7 +24,7 @@ const ModalCard = ({ toggleModal, status, selectedPerson }) => {
                             <p className="name">{personInModal[0].name}</p>
                             <p className="mobile">{personInModal[0].phone[0].value}</p>
                         </div>
-                        {console.log(context)}
+                        
                         <div className="more_data_container">
 
                             <div className="more_data">

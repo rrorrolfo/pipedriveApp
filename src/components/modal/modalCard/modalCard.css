@@ -99,3 +99,31 @@
     width: 80px;
     font-weight: 600;
 }
+
+@media (min-width: 768px) {
+    .person_card {
+        width: 60%;
+    }
+
+    .data_name {
+        font-size: 1.1rem;
+    }
+
+    .data_value {
+        font-size: 1rem;
+    }
+
+    .name {
+        font-size: 1.3rem;
+    }
+
+    .mobile {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .person_card {
+        width: 40%;
+    }
+}
