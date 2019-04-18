@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import arrayMove from 'array-move';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as PipeDriveactions from "../../actions/pipedriveApp";
@@ -13,7 +14,6 @@ class ListContainer extends Component {
     static propTypes = {
 
         people: PropTypes.arrayOf(PropTypes.object),
-        sortList: PropTypes.func.isRequired,
         state: PropTypes.shape({
             displayModal: PropTypes.bool,
             selectedPerson: PropTypes.number
@@ -21,9 +21,16 @@ class ListContainer extends Component {
     
     }
 
+    //Updates order of components after they have been dragged to new position
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({people}) => ({
+      people: arrayMove(people, oldIndex, newIndex),
+    }));
+  };
+
     render() {
 
-        const { sortList, dispatch, people, displayModal, selectedPerson } = this.props;
+        const { dispatch, people, displayModal, selectedPerson } = this.props;
         
         // Action dispatchers
         const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
@@ -40,7 +47,7 @@ class ListContainer extends Component {
                 {/**
                 * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
                 */}
-                <SortableContainer onSortEnd={ sortList } distance={ 15 }> 
+                <SortableContainer onSortEnd={ this.sortList } distance={ 15 }> 
                     { people ? (
                         people.map((person, index) => (
                         <PersonContainer 
@@ -59,7 +66,12 @@ class ListContainer extends Component {
                     }
                 </SortableContainer>
 
-                {displayModal ? (<Modal showModal={ displayModal } toggleModal={ toggleModal } selectedPerson={ selectedPerson }/>) : ("")}
+                {displayModal ? (<Modal 
+                        showModal={ displayModal } 
+                        toggleModal={ toggleModal } 
+                        selectedPerson={ selectedPerson } 
+                        people={ people }/>
+                        ) : ("")}
 
             </React.Fragment>
     
