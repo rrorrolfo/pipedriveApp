@@ -13,7 +13,7 @@ import PaginationContainer from "../pagination/PaginationContainer";
 class ListContainer extends Component {
 
     state = {
-        people:""
+        people:[]
       }
 
     static propTypes = {
