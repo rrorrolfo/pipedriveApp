@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import "./createPerson.css";
+import SuccessMessage from "./responseMessages/SuccessMessage";
+import FailedMessage from "./responseMessages/FailedMessage";
 
 class CreatePerson extends Component {
 
     state={
         name:"",
         email: "",
-        phone:""
+        phone:"",
+        personCreated: false,
+        errorCreating: false
     }
 
     // Handles change in an input, updates state to the value of the correspondant input
@@ -15,9 +19,13 @@ class CreatePerson extends Component {
         this.setState({ [name]: value });
     }
 
+    // Handles form submission
     handleSubmit = event => {
 
         event.preventDefault();
+
+        // For reseting response message display
+        this.setState({ personCreated: false, errorCreating: false})
     
         const data = {
             name: this.state.name,
@@ -33,10 +41,26 @@ class CreatePerson extends Component {
                 "Content-Type": "application/json"
             }
         }).then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+
+            if( data.success === true) {
+                this.setState({
+                    personCreated: true
+                })
+            } else {
+                this.setState({
+                    errorCreating: true
+                })
+            }
+        })
+        .catch( error => this.setState({errorCreating: true}))
+
     }
     
     render(){
+
+        const {name, personCreated, errorCreating} = this.state;
+        
         return(
             <form onSubmit={ this.handleSubmit }>
 
@@ -53,6 +77,9 @@ class CreatePerson extends Component {
                 </div>
 
                 <button type="submit" id="submit">Add Person</button>
+
+                { personCreated ? (<SuccessMessage name={name}/>) : ("")}
+                { errorCreating ? (<FailedMessage />) : ("")}
 
             </form>
         )

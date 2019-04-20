@@ -1,0 +1,9 @@
+#successMessage {
+    border: 2px solid rgb(29, 167, 1);
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  #successMessage h3 {
+    color: rgb(29, 167, 1);
+  }
