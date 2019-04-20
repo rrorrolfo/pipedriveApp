@@ -1,0 +1,32 @@
+.PaginationContainer {
+    padding: 0 20px 30px;
+}
+
+.paginationList {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+} 
+
+.paginationLink {
+    border: 1px solid var(--black-brand);
+    margin-right: 15px;
+    padding: 2.5px 7.5px;
+}
+
+.paginationLink:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .PaginationContainer {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .PaginationContainer {
+        width: 60%;
+    }
+}

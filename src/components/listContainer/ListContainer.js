@@ -8,6 +8,7 @@ import PersonContainer from "./personContainer/PersonContainer";
 import {sortableContainer} from 'react-sortable-hoc';
 import Modal from "../modal/Modal";
 import PropTypes from "prop-types";
+import PaginationContainer from "../pagination/PaginationContainer";
 
 class ListContainer extends Component {
 
@@ -90,6 +91,8 @@ class ListContainer extends Component {
                         selectedPerson={ selectedPerson } 
                         people={ people }/>
                         ) : ("")}
+
+                <PaginationContainer />
 
             </React.Fragment>
     
