@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
 import DeletePersonButton from "./deletePersonButton/DeletePersonButton";
 
 const PersonContainer = sortableElement(({id, name, company, toggleModal, modalstatus, personInModal}) => 
-    <li style={{listStyle: "none"}} onClick={ event => {toggleModal(modalstatus); personInModal(event.target.getAttribute("identifier"))} }>
+    <li style={{listStyle: "none"}}>
         
         <div className="PersonContainer">
             <div className="personal_data">
-                <div className="personMask" identifier={ id }></div>
+                <div className="personMask" identifier={ id } onClick={ event => {toggleModal(modalstatus); personInModal(event.target.getAttribute("identifier"))} }></div>
                 <p>{ name }</p>
                 <p className="company">{ company }</p>
             </div>
