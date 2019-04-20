@@ -6,6 +6,7 @@ import {
 import Header from "./components/header/Header";
 import Nav from "./components/navigation/Nav";
 import ListContainer from "./components/listContainer/ListContainer";
+import CreatePerson from './components/createPerson/CreatePerson';
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
           <Header />
           <Nav />
           <Route exact path="/" render= { () => <ListContainer people={this.state.people} /> } />
+          <Route path="/newPerson" component={ CreatePerson }/>
         </div>
       </BrowserRouter>
     );

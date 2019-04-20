@@ -7,7 +7,7 @@ const Nav = () => {
         <nav>
             <ul className="mainNav">
                 <li><NavLink to="/">People´s List</NavLink></li>
-                <li><NavLink to="/">Add New Person</NavLink></li>
+                <li><NavLink to="/newPerson">Add New Person</NavLink></li>
             </ul>
         </nav>
     )
