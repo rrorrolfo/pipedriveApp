@@ -5,7 +5,8 @@ import photo from "../../../assets/no_pic.jpg";
 import PropTypes from "prop-types";
 import DeletePersonButton from "./deletePersonButton/DeletePersonButton";
 
-const PersonContainer = sortableElement(({id, name, company, toggleModal, modalstatus, personInModal}) => 
+const PersonContainer = sortableElement(({id, name, company, toggleModal, modalstatus, personInModal, fetchPeople}) => 
+
     <li style={{listStyle: "none"}}>
         
         <div className="PersonContainer">
@@ -15,10 +16,11 @@ const PersonContainer = sortableElement(({id, name, company, toggleModal, modals
                 <p className="company">{ company }</p>
             </div>
             <img src={ photo } alt="lady" className="profile_pic"/>
-            <DeletePersonButton identifier={ id }/>
+            <DeletePersonButton identifier={ id } fetchPeople={ fetchPeople }/>
         </div>
 
     </li>
+    
 );
 
 PersonContainer.propTypes = {
@@ -27,7 +29,8 @@ PersonContainer.propTypes = {
     company: PropTypes.string,
     toggleModal: PropTypes.func,
     modalstatus: PropTypes.bool,
-    personInModal: PropTypes.func.isRequired
+    personInModal: PropTypes.func.isRequired,
+    fetchPeople: PropTypes.func.isRequired
 }
 
 export default PersonContainer;

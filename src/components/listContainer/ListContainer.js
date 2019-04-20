@@ -14,28 +14,24 @@ class ListContainer extends Component {
     state = {
         people:""
       }
-    
-      componentDidMount() {
-    
-        fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
-        .then(response => response.json())
-        .then( data => {console.log(data.data)
-          this.setState({
-            people: data.data
-          }) 
-        })
-    
-      }
 
     static propTypes = {
-
         state: PropTypes.shape({
             displayModal: PropTypes.bool,
             selectedPerson: PropTypes.number
         })
-    
     }
 
+    fetchPeople = () => {
+        fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
+        .then(response => response.json())
+        .then( data => {
+          this.setState({
+            people: data.data
+          }) 
+        })
+    }
+      
     //Updates order of components after they have been dragged to new position
     onSortEnd = ({oldIndex, newIndex}) => {
         this.setState(({people}) => ({
@@ -43,6 +39,11 @@ class ListContainer extends Component {
         }));
     };
 
+    componentDidMount() {
+        this.fetchPeople();
+      }
+
+      
     render() {
 
         const { dispatch, displayModal, selectedPerson } = this.props;
@@ -75,6 +76,7 @@ class ListContainer extends Component {
                             toggleModal={ toggleModal }
                             modalStatus={ displayModal }
                             personInModal={ personInModal }
+                            fetchPeople={ this.fetchPeople }
                             />))
                         ):(
                             ""

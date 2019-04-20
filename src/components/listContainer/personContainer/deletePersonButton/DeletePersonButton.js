@@ -2,7 +2,11 @@ import React from "react";
 import "./deleteButton.css";
 import PropTypes from "prop-types";
 
-const deletePerson = id => {
+/**
+     @param {number} id ID number of the person that will be deleted
+     @callback callback function that will be executed if the delete request has received a success response
+*/
+const deletePerson = (id, callback) => {
 
     const data = {
         id
@@ -15,18 +19,30 @@ const deletePerson = id => {
                 "Content-Type": "application/json"
             }
         }).then(res => res.json())
-        .then(data => console.log(data.success))
+        .then(data => {
+            if(data.success) {
+                callback();
+            }
+        })
         .catch(error => console.error(error))
 }
 
-const DeletePersonButton = ({identifier}) => {
+const DeletePersonButton = ({identifier, fetchPeople}) => {
+
     return(
-        <button type="button" className="DeleteButton" id={identifier} onClick={ () => deletePerson(identifier) }>Delete</button>
+        <button 
+            type="button" 
+            className="DeleteButton" 
+            id={identifier} 
+            onClick={ () => deletePerson(identifier, fetchPeople) }>
+        Delete</button>
     )
+
 }
 
 DeletePersonButton.propTypes = {
-    identifier: PropTypes.number.isRequired
+    identifier: PropTypes.number.isRequired,
+    fetchPeople: PropTypes.func.isRequired
 }
 
 export default DeletePersonButton;
