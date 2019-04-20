@@ -29,9 +29,9 @@ class CreatePerson extends Component {
     
         const data = {
             name: this.state.name,
-            email: this.state.email,
-            phone: this.state.phone
-
+            email: [{label: "work", value: this.state.email, primary: true}],
+            phone: [{label: "work", value: this.state.phone, primary: true}],
+            org_id: Math.floor((Math.random() * 20) + 1).toString()
         }
         
         fetch("https://api.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4", {
