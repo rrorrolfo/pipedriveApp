@@ -9,13 +9,16 @@
 } 
 
 .paginationLink {
-    border: 1px solid var(--black-brand);
+    background-color: var(--green-color);
+    color: #fff;
+    border: 1px solid var(--green-color);
     margin-right: 15px;
     padding: 2.5px 7.5px;
 }
 
 .paginationLink:hover {
     cursor: pointer;
+    background-color: rgb(19, 83, 0);
 }
 
 @media (min-width: 768px) {

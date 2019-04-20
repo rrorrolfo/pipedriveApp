@@ -1,9 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const PaginationLink = () => {
+const PaginationLink = ({ value }) => {
     return(
-        <li className="paginationLink">1</li>
+        <li className="paginationLink"> { value } </li>
     )
+}
+
+PaginationLink.propTypes = {
+    value: PropTypes.number.isRequired
 }
 
 export default PaginationLink;

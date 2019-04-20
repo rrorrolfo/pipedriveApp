@@ -92,7 +92,7 @@ class ListContainer extends Component {
                         people={ people }/>
                         ) : ("")}
 
-                <PaginationContainer />
+                <PaginationContainer people={ people }/>
 
             </React.Fragment>
     
