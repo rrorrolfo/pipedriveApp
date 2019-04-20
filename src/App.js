@@ -18,7 +18,7 @@ class App extends Component {
 
     fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
     .then(response => response.json())
-    .then( data => {
+    .then( data => {console.log(data.data)
       this.setState({
         people: data.data
       }) 
