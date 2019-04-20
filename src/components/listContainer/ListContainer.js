@@ -11,9 +11,24 @@ import PropTypes from "prop-types";
 
 class ListContainer extends Component {
 
+    state = {
+        people:""
+      }
+    
+      componentDidMount() {
+    
+        fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
+        .then(response => response.json())
+        .then( data => {console.log(data.data)
+          this.setState({
+            people: data.data
+          }) 
+        })
+    
+      }
+
     static propTypes = {
 
-        people: PropTypes.arrayOf(PropTypes.object),
         state: PropTypes.shape({
             displayModal: PropTypes.bool,
             selectedPerson: PropTypes.number
@@ -22,15 +37,16 @@ class ListContainer extends Component {
     }
 
     //Updates order of components after they have been dragged to new position
-  onSortEnd = ({oldIndex, newIndex}) => {
-    this.setState(({people}) => ({
-      people: arrayMove(people, oldIndex, newIndex),
-    }));
-  };
+    onSortEnd = ({oldIndex, newIndex}) => {
+        this.setState(({people}) => ({
+        people: arrayMove(people, oldIndex, newIndex),
+        }));
+    };
 
     render() {
 
-        const { dispatch, people, displayModal, selectedPerson } = this.props;
+        const { dispatch, displayModal, selectedPerson } = this.props;
+        const { people } = this.state;
         
         // Action dispatchers
         const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
@@ -47,7 +63,7 @@ class ListContainer extends Component {
                 {/**
                 * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
                 */}
-                <SortableContainer onSortEnd={ this.sortList } distance={ 15 }> 
+                <SortableContainer onSortEnd={ this.onSortEnd } distance={ 15 }> 
                     { people ? (
                         people.map((person, index) => (
                         <PersonContainer 
