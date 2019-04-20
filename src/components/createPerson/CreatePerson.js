@@ -60,12 +60,12 @@ class CreatePerson extends Component {
     render(){
 
         const {name, personCreated, errorCreating} = this.state;
-        
+
         return(
             <form onSubmit={ this.handleSubmit }>
 
                 <div className="input_container">
-                    <input type="text" id="nombre" name="name" placeholder="Name" onChange={ this.handleChange }/>
+                    <input type="text" id="nombre" name="name" placeholder="Name" onChange={ this.handleChange } required/>
                 </div>
 
                 <div className="input_container">

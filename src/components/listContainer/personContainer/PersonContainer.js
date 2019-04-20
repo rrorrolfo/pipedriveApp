@@ -3,6 +3,7 @@ import "./personContainer.css";
 import {sortableElement} from 'react-sortable-hoc';
 import photo from "../../../assets/no_pic.jpg";
 import PropTypes from "prop-types";
+import DeletePersonButton from "./deletePersonButton/DeletePersonButton";
 
 const PersonContainer = sortableElement(({id, name, company, toggleModal, modalstatus, personInModal}) => 
     <li style={{listStyle: "none"}} onClick={ event => {toggleModal(modalstatus); personInModal(event.target.getAttribute("identifier"))} }>
@@ -14,6 +15,7 @@ const PersonContainer = sortableElement(({id, name, company, toggleModal, modals
                 <p className="company">{ company }</p>
             </div>
             <img src={ photo } alt="lady" className="profile_pic"/>
+            <DeletePersonButton identifier={ id }/>
         </div>
 
     </li>
