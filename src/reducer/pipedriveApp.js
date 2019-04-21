@@ -6,7 +6,8 @@ const initialState = {
     error: null,
     displayModal: false,
     selectedPerson: "",
-    currentPage: 1
+    currentPage: 1,
+    peopleInPage: null
 };
 
 export default function pipedriveApp(state = initialState, action) {
@@ -49,6 +50,12 @@ export default function pipedriveApp(state = initialState, action) {
             ...state,
             currentPage: action.currentPage
         };
+
+        case PipedriveActionTypes.PEOPLE_IN_PAGE:
+        return {
+            ...state,
+            peopleInPage: [...action.array.slice(action.indexStart, action.indexEnd)]
+        }
 
         default:
         return state;

@@ -18,7 +18,8 @@ class ListContainer extends Component {
             error: PropTypes,
             displayModal: PropTypes.bool,
             selectedPerson: PropTypes.number,
-            currentPage: PropTypes.number
+            currentPage: PropTypes.number,
+            peopleInPage: PropTypes.array
         })
     }
       
@@ -42,7 +43,8 @@ class ListContainer extends Component {
             fetchPeople, 
             toggleModal, 
             personInModal, 
-            selectedPage } = this.props;
+            selectedPage,
+            peopleInPage } = this.props;
 
         // Sotable container HOC - Components inside SortableContainer are sortable and dragable
         const SortableContainer = sortableContainer(({children}) => {
@@ -57,8 +59,8 @@ class ListContainer extends Component {
                 */}
                 <SortableContainer /*onSortEnd={ this.onSortEnd }*/ distance={ 15 }> 
 
-                    { people ? (
-                        people.map((person, index) => (
+                    { peopleInPage ? (
+                        peopleInPage.map((person, index) => (
                         <PersonContainer 
                             key={ person.id } 
                             id={ person.id }
@@ -84,7 +86,11 @@ class ListContainer extends Component {
                         people={ people }/>
                         ) : ("")}
 
-                <PaginationContainer people={ people } currentPage={ selectedPage }/>
+                <PaginationContainer 
+                people={ people } 
+                currentPage={ selectedPage }
+                fetchPeople={ fetchPeople }
+                />
 
             </React.Fragment>
     
@@ -100,7 +106,8 @@ const mapStateToProps = state => {
         error: state.error,
         displayModal: state.displayModal,
         selectedPerson: state.selectedPerson,
-        currentPage: state.currentPage
+        currentPage: state.currentPage,
+        peopleInPage: state.peopleInPage
     }
 }
 
@@ -109,7 +116,8 @@ const mapDispatchToProps = dispatch => {
         fetchPeople: () => dispatch(PipeDriveactions.fetchPeople()),
         toggleModal: status => dispatch(PipeDriveactions.toggleModal(status)),
         personInModal: person => dispatch(PipeDriveactions.personInModal(person)),
-        selectedPage: value => dispatch(PipeDriveactions.currentPage(value))
+        selectedPage: value => dispatch(PipeDriveactions.currentPage(value)),
+        displayPeople: (page, array) => dispatch(PipeDriveactions.peopleInPage(page, array))
     }
 }
 

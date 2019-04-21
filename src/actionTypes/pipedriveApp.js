@@ -5,3 +5,4 @@ export const FETCH_FAILURE = "pipedriveApp/FETCH_FAILURE";
 export const TOOGLE_MODAL = "pipedriveApp/TOOGLE_MODAL";
 export const SELECT_PERSON = "pipedriveApp/SELECT_PERSON";
 export const CURRENT_PAGE = "pipedriveApp/CURRENT_PAGE";
+export const PEOPLE_IN_PAGE = "pipedriveApp/PEOPLE_IN_PAGE";
