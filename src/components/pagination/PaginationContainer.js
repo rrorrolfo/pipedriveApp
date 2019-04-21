@@ -3,7 +3,7 @@ import "./paginationContainer.css";
 import PaginationLink from "./paginationLink/PaginationLink";
 import PropTypes from "prop-types";
 
-const PaginationContainer = ({ people, currentPage, fetchPeople }) => {
+const PaginationContainer = ({ people, currentPage, fetchPeople, updateSortablePeople }) => {
 
     /**
      *@param {array} array The length of the array passed will determine the number of links to be printed
@@ -19,6 +19,7 @@ const PaginationContainer = ({ people, currentPage, fetchPeople }) => {
             value={ i + 1 } 
             currentPage={ currentPage }
             fetchPeople={ fetchPeople }
+            updateSortablePeople= { updateSortablePeople }
             />)
           }
 
@@ -40,7 +41,8 @@ const PaginationContainer = ({ people, currentPage, fetchPeople }) => {
 PaginationContainer.propTypes = {
     people: PropTypes.array,
     currentPage: PropTypes.func.isRequired,
-    fetchPeople: PropTypes.func.isRequired
+    fetchPeople: PropTypes.func.isRequired,
+    updateSortablePeople: PropTypes.func.isRequired
 }
 
 export default PaginationContainer;

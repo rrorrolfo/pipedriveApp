@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-/*import arrayMove from 'array-move';*/
+import arrayMove from 'array-move';
 import { connect } from "react-redux";
 import * as PipeDriveactions from "../../actions/pipedriveApp";
 import "./listContainer.css";
@@ -23,17 +23,33 @@ class ListContainer extends Component {
         })
     }
       
-    /*
+    state = {
+        sortablePeople: null
+    }
+    
     //Updates order of components after they have been dragged to new position
     onSortEnd = ({oldIndex, newIndex}) => {
-        this.setState(({people}) => ({
-        people: arrayMove(people, oldIndex, newIndex),
+        this.setState(({sortablePeople}) => ({
+        sortablePeople: arrayMove(sortablePeople, oldIndex, newIndex),
         }));
-    };*/
+    };
+
+    updateSortablePeople = page => {
+        this.setState({
+            sortablePeople: this.props.people.slice( (page - 1) * 10, ((page - 1) * 10) + 10)
+        })
+    }
 
     componentDidMount() {
         this.props.fetchPeople();
       }
+
+    componentWillReceiveProps(){
+        const {people, currentPage} = this.props;
+        if(people && this.state.sortablePeople === null){
+            this.updateSortablePeople(currentPage);
+        }
+    }
       
     render() {
 
@@ -43,8 +59,7 @@ class ListContainer extends Component {
             fetchPeople, 
             toggleModal, 
             personInModal, 
-            selectedPage,
-            peopleInPage } = this.props;
+            selectedPage } = this.props;
 
         // Sotable container HOC - Components inside SortableContainer are sortable and dragable
         const SortableContainer = sortableContainer(({children}) => {
@@ -57,10 +72,10 @@ class ListContainer extends Component {
                 {/**
                 * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
                 */}
-                <SortableContainer /*onSortEnd={ this.onSortEnd }*/ distance={ 15 }> 
+                <SortableContainer onSortEnd={ this.onSortEnd } distance={ 10 }> 
 
-                    { peopleInPage ? (
-                        peopleInPage.map((person, index) => (
+                    { this.state.sortablePeople ? (
+                        this.state.sortablePeople.map((person, index) => (
                         <PersonContainer 
                             key={ person.id } 
                             id={ person.id }
@@ -71,6 +86,7 @@ class ListContainer extends Component {
                             modalStatus={ displayModal }
                             personInModal={ personInModal }
                             fetchPeople={ fetchPeople }
+                            updateSortablePeople={ this.updateSortablePeople }
                             />))
                         ):(
                             ""
@@ -90,6 +106,7 @@ class ListContainer extends Component {
                 people={ people } 
                 currentPage={ selectedPage }
                 fetchPeople={ fetchPeople }
+                updateSortablePeople={ this.updateSortablePeople }
                 />
 
             </React.Fragment>
