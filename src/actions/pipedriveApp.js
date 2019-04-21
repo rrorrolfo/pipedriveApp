@@ -1,4 +1,6 @@
 import * as PipedriveActionTypes from "../actionTypes/pipedriveApp";
+import apiKey from "../config/config";
+import {companyURL} from "../config/config";
 
 export const fetchPeople = () => {
     return (dispatch, getState) => {
@@ -6,7 +8,7 @@ export const fetchPeople = () => {
         const { currentPage } = getState();
         dispatch(fetchedStarted());
 
-        fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
+        fetch(`${companyURL}/v1/persons?api_token=${apiKey}`)
         .then(response => response.json())
         .then( data => {
             const people = data.data;

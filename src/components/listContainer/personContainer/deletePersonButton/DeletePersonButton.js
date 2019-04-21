@@ -1,6 +1,7 @@
 import React from "react";
 import "./deleteButton.css";
 import PropTypes from "prop-types";
+import apiKey from "../../../../config/config";
 
 /**
      @param {number} id ID number of the person that will be deleted
@@ -12,7 +13,7 @@ const deletePerson = (id, callback) => {
         id
     }
     
-    fetch(`https://api.pipedrive.com/v1/persons/${data.id}?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4`, {
+    fetch(`https://api.pipedrive.com/v1/persons/${data.id}?api_token=${apiKey}`, {
             method: "DELETE",
             body: JSON.stringify(data),
             headers:{

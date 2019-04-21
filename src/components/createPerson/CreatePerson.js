@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./createPerson.css";
 import SuccessMessage from "./responseMessages/SuccessMessage";
 import FailedMessage from "./responseMessages/FailedMessage";
+import apiKey from "../../config/config";
 
 class CreatePerson extends Component {
 
@@ -34,7 +35,7 @@ class CreatePerson extends Component {
             org_id: Math.floor((Math.random() * 20) + 1).toString()
         }
         
-        fetch("https://api.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4", {
+        fetch(`https://api.pipedrive.com/v1/persons?api_token=${apiKey}`, {
             method: "POST",
             body: JSON.stringify(data),
             headers:{
