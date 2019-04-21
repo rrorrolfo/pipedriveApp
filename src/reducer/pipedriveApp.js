@@ -2,7 +2,8 @@ import * as PipedriveActionTypes from "../actionTypes/pipedriveApp";
 
 const initialState = {
     displayModal: false,
-    selectedPerson: ""
+    selectedPerson: "",
+    currentPage: 1
 };
 
 export default function pipedriveApp(state = initialState, action) {
@@ -18,6 +19,12 @@ export default function pipedriveApp(state = initialState, action) {
         return {
             ...state,
             selectedPerson: action.personID
+        }
+
+        case PipedriveActionTypes.CURRENT_PAGE:
+        return {
+            ...state,
+            currentPage: action.currentPage
         }
 
         default:

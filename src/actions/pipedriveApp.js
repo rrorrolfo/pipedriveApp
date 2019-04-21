@@ -12,4 +12,12 @@ export const personInModal = personID => {
         type: PipedriveActionTypes.SELECT_PERSON,
         personID
     }
+};
+
+export const currentPage = pageNumber => {
+    return {
+        type: PipedriveActionTypes.CURRENT_PAGE,
+        currentPage: pageNumber
+    }
 }
+

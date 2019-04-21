@@ -19,7 +19,8 @@ class ListContainer extends Component {
     static propTypes = {
         state: PropTypes.shape({
             displayModal: PropTypes.bool,
-            selectedPerson: PropTypes.number
+            selectedPerson: PropTypes.number,
+            currentPage: PropTypes.number
         })
     }
 
@@ -53,6 +54,7 @@ class ListContainer extends Component {
         // Action dispatchers
         const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
         const personInModal = bindActionCreators(PipeDriveactions.personInModal, dispatch);
+        const selectedPage = bindActionCreators(PipeDriveactions.currentPage, dispatch);
 
         // Sotable container HOC - Components inside SortableContainer are sortable and dragable
         const SortableContainer = sortableContainer(({children}) => {
@@ -92,7 +94,7 @@ class ListContainer extends Component {
                         people={ people }/>
                         ) : ("")}
 
-                <PaginationContainer people={ people }/>
+                <PaginationContainer people={ people } currentPage={ selectedPage }/>
 
             </React.Fragment>
     
@@ -104,7 +106,8 @@ class ListContainer extends Component {
 const mapStateToProps = state => {
     return {
         displayModal: state.displayModal,
-        selectedPerson: state.selectedPerson
+        selectedPerson: state.selectedPerson,
+        currentPage: state.currentPage
     }
 }
 
