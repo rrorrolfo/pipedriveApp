@@ -46,7 +46,7 @@ class ListContainer extends Component {
 
     componentWillReceiveProps(){
         const {people, currentPage} = this.props;
-        if(people && this.state.sortablePeople === null){
+        if(people){
             this.updateSortablePeople(currentPage);
         }
     }
@@ -59,7 +59,8 @@ class ListContainer extends Component {
             fetchPeople, 
             toggleModal, 
             personInModal, 
-            selectedPage } = this.props;
+            selectedPage,
+            currentPage } = this.props;
 
         // Sotable container HOC - Components inside SortableContainer are sortable and dragable
         const SortableContainer = sortableContainer(({children}) => {
@@ -87,6 +88,7 @@ class ListContainer extends Component {
                             personInModal={ personInModal }
                             fetchPeople={ fetchPeople }
                             updateSortablePeople={ this.updateSortablePeople }
+                            currentPage={ currentPage }
                             />))
                         ):(
                             ""

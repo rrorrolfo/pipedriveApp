@@ -27,14 +27,14 @@ const deletePerson = (id, callback) => {
         .catch(error => console.error(error))
 }
 
-const DeletePersonButton = ({identifier, fetchPeople}) => {
+const DeletePersonButton = ({identifier, fetchPeople, updateSortablePeople, currentPage}) => {
 
     return(
         <button 
             type="button" 
             className="DeleteButton" 
             id={identifier} 
-            onClick={ () => deletePerson(identifier, fetchPeople) }>
+            onClick={ () => {deletePerson(identifier, fetchPeople); updateSortablePeople(currentPage)} }>
         Delete</button>
     )
 
@@ -42,7 +42,9 @@ const DeletePersonButton = ({identifier, fetchPeople}) => {
 
 DeletePersonButton.propTypes = {
     identifier: PropTypes.number.isRequired,
-    fetchPeople: PropTypes.func.isRequired
+    fetchPeople: PropTypes.func.isRequired,
+    updateSortablePeople: PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired
 }
 
 export default DeletePersonButton;
