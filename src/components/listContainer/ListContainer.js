@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import arrayMove from 'array-move';
+/*import arrayMove from 'array-move';*/
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as PipeDriveactions from "../../actions/pipedriveApp";
 import "./listContainer.css";
 import PersonContainer from "./personContainer/PersonContainer";
@@ -22,40 +21,28 @@ class ListContainer extends Component {
             currentPage: PropTypes.number
         })
     }
-
-    /*fetchPeople = () => {
-        fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
-        .then(response => response.json())
-        .then( data => {
-          this.setState({
-            people: data.data
-          }) 
-        })
-    }*/
       
+    /*
     //Updates order of components after they have been dragged to new position
     onSortEnd = ({oldIndex, newIndex}) => {
         this.setState(({people}) => ({
         people: arrayMove(people, oldIndex, newIndex),
         }));
-    };
+    };*/
 
     componentDidMount() {
-        const { dispatch } = this.props;
-        const fetchPeople = bindActionCreators(PipeDriveactions.fetchPeople, dispatch);
-        fetchPeople();
+        this.props.fetchPeople();
       }
       
     render() {
 
-        const { dispatch, people, displayModal, selectedPerson } = this.props;
-        /*const { people } = this.state;*/
-        
-        // Action dispatchers
-        const fetchPeople = bindActionCreators(PipeDriveactions.fetchPeople, dispatch);
-        const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
-        const personInModal = bindActionCreators(PipeDriveactions.personInModal, dispatch);
-        const selectedPage = bindActionCreators(PipeDriveactions.currentPage, dispatch);
+        const { people, 
+            displayModal, 
+            selectedPerson, 
+            fetchPeople, 
+            toggleModal, 
+            personInModal, 
+            selectedPage } = this.props;
 
         // Sotable container HOC - Components inside SortableContainer are sortable and dragable
         const SortableContainer = sortableContainer(({children}) => {
@@ -68,7 +55,7 @@ class ListContainer extends Component {
                 {/**
                 * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
                 */}
-                <SortableContainer onSortEnd={ this.onSortEnd } distance={ 15 }> 
+                <SortableContainer /*onSortEnd={ this.onSortEnd }*/ distance={ 15 }> 
 
                     { people ? (
                         people.map((person, index) => (
@@ -117,4 +104,13 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(ListContainer);
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchPeople: () => dispatch(PipeDriveactions.fetchPeople()),
+        toggleModal: status => dispatch(PipeDriveactions.toggleModal(status)),
+        personInModal: person => dispatch(PipeDriveactions.personInModal(person)),
+        selectedPage: value => dispatch(PipeDriveactions.currentPage(value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListContainer);
