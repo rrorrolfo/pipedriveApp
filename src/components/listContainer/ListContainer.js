@@ -12,19 +12,18 @@ import PaginationContainer from "../pagination/PaginationContainer";
 
 class ListContainer extends Component {
 
-    state = {
-        people:[]
-      }
-
     static propTypes = {
         state: PropTypes.shape({
+            people: PropTypes.array,
+            fetching: PropTypes.bool,
+            error: PropTypes,
             displayModal: PropTypes.bool,
             selectedPerson: PropTypes.number,
             currentPage: PropTypes.number
         })
     }
 
-    fetchPeople = () => {
+    /*fetchPeople = () => {
         fetch("https://rodolfocompany-860a35.pipedrive.com/v1/persons?api_token=479f2bc15058867bb7dcfdaade60fe25d27c55f4")
         .then(response => response.json())
         .then( data => {
@@ -32,7 +31,7 @@ class ListContainer extends Component {
             people: data.data
           }) 
         })
-    }
+    }*/
       
     //Updates order of components after they have been dragged to new position
     onSortEnd = ({oldIndex, newIndex}) => {
@@ -42,16 +41,18 @@ class ListContainer extends Component {
     };
 
     componentDidMount() {
-        this.fetchPeople();
+        const { dispatch } = this.props;
+        const fetchPeople = bindActionCreators(PipeDriveactions.fetchPeople, dispatch);
+        fetchPeople();
       }
-
       
     render() {
 
-        const { dispatch, displayModal, selectedPerson } = this.props;
-        const { people } = this.state;
+        const { dispatch, people, displayModal, selectedPerson } = this.props;
+        /*const { people } = this.state;*/
         
         // Action dispatchers
+        const fetchPeople = bindActionCreators(PipeDriveactions.fetchPeople, dispatch);
         const toggleModal = bindActionCreators(PipeDriveactions.toggleModal, dispatch);
         const personInModal = bindActionCreators(PipeDriveactions.personInModal, dispatch);
         const selectedPage = bindActionCreators(PipeDriveactions.currentPage, dispatch);
@@ -68,6 +69,7 @@ class ListContainer extends Component {
                 * @param {string} distance Determines the number of pixel that the Draggable component needs to be dragged for it to become dragable
                 */}
                 <SortableContainer onSortEnd={ this.onSortEnd } distance={ 15 }> 
+
                     { people ? (
                         people.map((person, index) => (
                         <PersonContainer 
@@ -79,12 +81,13 @@ class ListContainer extends Component {
                             toggleModal={ toggleModal }
                             modalStatus={ displayModal }
                             personInModal={ personInModal }
-                            fetchPeople={ this.fetchPeople }
+                            fetchPeople={ fetchPeople }
                             />))
                         ):(
                             ""
                         ) 
                     }
+
                 </SortableContainer>
 
                 {displayModal ? (<Modal 
@@ -105,6 +108,9 @@ class ListContainer extends Component {
 
 const mapStateToProps = state => {
     return {
+        people: state.people,
+        fetching: state.fetching,
+        error: state.error,
         displayModal: state.displayModal,
         selectedPerson: state.selectedPerson,
         currentPage: state.currentPage

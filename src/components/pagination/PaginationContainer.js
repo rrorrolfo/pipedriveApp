@@ -33,7 +33,7 @@ const PaginationContainer = ({ people, currentPage }) => {
 }
 
 PaginationContainer.propTypes = {
-    people: PropTypes.array.isRequired,
+    people: PropTypes.array,
     currentPage: PropTypes.func
 }
 
